@@ -98,30 +98,30 @@
 
         //html template for the picker UI
         if (typeof options.template !== 'string')
-            options.template = '<div class="daterangepicker dropdown-menu">' +
-                '<div class="calendar left">' +
-                    '<div class="daterangepicker_input">' +
-                      '<input class="input-mini" type="text" name="daterangepicker_start" value="" />' +
-                      '<i class="fa fa-calendar glyphicon glyphicon-calendar"></i>' +
-                      '<div class="calendar-time">' +
+            options.template = '<div class="daterangepicker ui flowing basic popup">' +
+                '<div class="calendar left column">' +
+                    '<div class="daterangepicker_input ui small input fluid left icon">' +
+                      '<i class="calendar icon"></i>' +
+                      '<input class="" type="text" name="daterangepicker_start" value="" />' +
+                      '<div class="calendar-time ui small input fluid left icon">' +
+                        '<i class="wait icon"></i>' +
                         '<div></div>' +
-                        '<i class="fa fa-clock-o glyphicon glyphicon-time"></i>' +
                       '</div>' +
                     '</div>' +
-                    '<div class="calendar-table"></div>' +
+                    '<div class="calendar-table ui"></div>' +
                 '</div>' +
-                '<div class="calendar right">' +
-                    '<div class="daterangepicker_input">' +
-                      '<input class="input-mini" type="text" name="daterangepicker_end" value="" />' +
-                      '<i class="fa fa-calendar glyphicon glyphicon-calendar"></i>' +
-                      '<div class="calendar-time">' +
+                '<div class="ui calendar right column">' +
+                    '<div class="daterangepicker_input ui small input fluid left icon">' +
+                      '<i class="calendar icon"></i>' +
+                      '<input class="" type="text" name="daterangepicker_end" value="" />' +
+                      '<div class="calendar-time ui small input fluid left icon">' +
+                        '<i class="wait icon"></i>' +
                         '<div></div>' +
-                        '<i class="fa fa-clock-o glyphicon glyphicon-time"></i>' +
                       '</div>' +
                     '</div>' +
-                    '<div class="calendar-table"></div>' +
+                    '<div class="calendar-table ui"></div>' +
                 '</div>' +
-                '<div class="ranges">' +
+                '<div class="ranges column">' +
                     '<div class="range_inputs">' +
                         '<button class="applyBtn" disabled="disabled" type="button"></button> ' +
                         '<button class="cancelBtn" type="button"></button>' +
@@ -683,18 +683,13 @@
             var maxDate = this.maxDate;
             var selected = side == 'left' ? this.startDate : this.endDate;
 
-            var html = '<table class="table-condensed">';
-            html += '<thead>';
-            html += '<tr>';
-
-            // add empty cell for week number
-            if (this.showWeekNumbers)
-                html += '<th></th>';
+            var html = '<table class="ui very basic table"><tr><td>';
 
             if ((!minDate || minDate.isBefore(calendar.firstDay)) && (!this.linkedCalendars || side == 'left')) {
-                html += '<th class="prev available"><i class="fa fa-chevron-left glyphicon glyphicon-chevron-left"></i></th>';
+                // html += '<th class="prev available"><i class="arrow circle left icon"></i></th>';
+            html += '<a class="prev"><i class="arrow circle left icon"></i></a>';
             } else {
-                html += '<th></th>';
+                // html += '<th></th>';
             }
 
             var dateHtml = this.locale.monthNames[calendar[1][1].month()] + calendar[1][1].format(" YYYY");
@@ -732,14 +727,26 @@
                 dateHtml = monthHtml + yearHtml;
             }
 
-            html += '<th colspan="5" class="month">' + dateHtml + '</th>';
+            var colspanLength = 5;
+            // add empty cell for week number
+            if (this.showWeekNumbers)
+                colspanLength = 6;
+
+            // html += '<th colspan="' + colspanLength + '" class="month">' + dateHtml + '</th>';
+            html += dateHtml;
             if ((!maxDate || maxDate.isAfter(calendar.lastDay)) && (!this.linkedCalendars || side == 'right' || this.singleDatePicker)) {
-                html += '<th class="next available"><i class="fa fa-chevron-right glyphicon glyphicon-chevron-right"></i></th>';
+                // html += '<th class="next available"><i class="arrow circle right icon"></i></th>';
+            html += '<a class="next"><i class="arrow circle right icon"></i></a>';
+
             } else {
-                html += '<th></th>';
+                // html += '<th></th>';
             }
 
-            html += '</tr>';
+            html += '</td></tr></table>';
+
+
+            html += '<table class="ui table compact">';
+            html += '<thead>';
             html += '<tr>';
 
             // add week number label
