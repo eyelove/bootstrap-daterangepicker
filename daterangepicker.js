@@ -103,10 +103,10 @@
                     '<div class="daterangepicker_input ui small input fluid left icon">' +
                       '<i class="calendar icon"></i>' +
                       '<input class="" type="text" name="daterangepicker_start" value="" />' +
-                      '<div class="calendar-time ui small input fluid left icon">' +
-                        '<i class="wait icon"></i>' +
-                        '<div></div>' +
-                      '</div>' +
+                      // '<div class="calendar-time ui small input fluid left icon">' +
+                      //   '<i class="wait icon"></i>' +
+                      //   '<div></div>' +
+                      // '</div>' +
                     '</div>' +
                     '<div class="calendar-table ui"></div>' +
                 '</div>' +
@@ -114,10 +114,10 @@
                     '<div class="daterangepicker_input ui small input fluid left icon">' +
                       '<i class="calendar icon"></i>' +
                       '<input class="" type="text" name="daterangepicker_end" value="" />' +
-                      '<div class="calendar-time ui small input fluid left icon">' +
-                        '<i class="wait icon"></i>' +
-                        '<div></div>' +
-                      '</div>' +
+                      // '<div class="calendar-time ui small input fluid left icon">' +
+                      //   '<i class="wait icon"></i>' +
+                      //   '<div></div>' +
+                      // '</div>' +
                     '</div>' +
                     '<div class="calendar-table ui"></div>' +
                 '</div>' +
@@ -687,7 +687,7 @@
 
             if ((!minDate || minDate.isBefore(calendar.firstDay)) && (!this.linkedCalendars || side == 'left')) {
                 // html += '<th class="prev available"><i class="arrow circle left icon"></i></th>';
-            html += '<a class="prev"><i class="arrow circle left icon"></i></a>';
+            // html += '<a class="prev"><i class="arrow circle left icon"></i></a>';
             } else {
                 // html += '<th></th>';
             }
@@ -736,7 +736,7 @@
             html += dateHtml;
             if ((!maxDate || maxDate.isAfter(calendar.lastDay)) && (!this.linkedCalendars || side == 'right' || this.singleDatePicker)) {
                 // html += '<th class="next available"><i class="arrow circle right icon"></i></th>';
-            html += '<a class="next"><i class="arrow circle right icon"></i></a>';
+            // html += '<a class="next"><i class="arrow circle right icon"></i></a>';
 
             } else {
                 // html += '<th></th>';
@@ -745,9 +745,9 @@
             html += '</td></tr></table>';
 
 
-            html += '<table class="ui table compact">';
+            html += '<table class="ui table unstackable small">';
             html += '<thead>';
-            html += '<tr>';
+            html += '<tr class="center aligned">';
 
             // add week number label
             if (this.showWeekNumbers)
